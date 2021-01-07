@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import { db } from '../main';
+import { db } from '../main';
 
 Vue.use(Vuex)
 
@@ -16,8 +16,14 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
-    agregarProyecto() {
-      
+    agregarProyecto(context, data) {
+      db.collection('projects').add({
+        name: data.name,
+        place: data.place,
+        description: data.description
+      }).then(resp => {
+        console.log(resp);
+      })
     }
   }
 })
