@@ -4,13 +4,13 @@
         <h4 class="mb-4">Comienza un nuevo proyecto</h4>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group id="input-group-1" label="Nombre del proyecto" label-for="input-1">
-            <b-form-input id="input-1" v-model="form.name" placeholder="Fotografía y ciudad." required></b-form-input>
+            <b-form-input id="input-1" v-model="proj.name" placeholder="Fotografía y ciudad." required></b-form-input>
         </b-form-group>
         <b-form-group id="input-group-2" label="Institución o territorio" label-for="input-2">
-            <b-form-input id="input-2" v-model="form.place" placeholder="Junta de vecinos Plaza Ratón." required></b-form-input>
+            <b-form-input id="input-2" v-model="proj.place" placeholder="Junta de vecinos Plaza Ratón." required></b-form-input>
         </b-form-group>
         <b-form-group id="input-group-3" label="Breve descripción del proyecto" label-for="input-3">
-          <b-form-textarea id="textarea" v-model="text" placeholder="En 100 caracteres escribe en qué consiste y para quien." rows="3" max-rows="6"></b-form-textarea>
+          <b-form-textarea id="textarea" v-model="proj.description" placeholder="En 100 caracteres escribe en qué consiste y para quien." rows="3" max-rows="6"></b-form-textarea>
         </b-form-group>
 
         <b-button type="submit" variant="warning">Submit</b-button>
@@ -25,9 +25,10 @@ export default {
   name: 'Nuevo',
     data() {
         return {
-        form: {
+        proj: {
             name: '',
-            place: ''
+            place: '',
+            description: ''
         },
         show: true
         }
@@ -46,7 +47,8 @@ export default {
             this.$nextTick(() => {
                 this.show = true
             })
-        }
+        },
+        // Agregar función para enviar los datos a firebase 
     }
 }
 </script>
