@@ -8,9 +8,9 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#"><router-link to="/">Portada</router-link></b-nav-item>
-            <b-nav-item href="#"><router-link to="/proyectos">Mis proyectos</router-link></b-nav-item>
-            <b-nav-item href="#"><router-link to="/nuevoproyecto">Nuevo proyecto</router-link></b-nav-item>
+            <b-nav-item><router-link to="/">Portada</router-link></b-nav-item>
+            <b-nav-item><router-link to="/proyectos">Mis proyectos</router-link></b-nav-item>
+            <b-nav-item><router-link to="/nuevoproyecto">Nuevo proyecto</router-link></b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -25,7 +25,7 @@
               <template #button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item href="#">Login</b-dropdown-item>
+              <b-dropdown-item><router-link to="/login">Login</router-link></b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
