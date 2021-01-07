@@ -8,22 +8,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '*',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/portada',
-    name: 'Home',
-    component: Home
+    component: Home,
+    alias: ['*', '/home', '/portada', '/inicio']
   },
   {
     path: '/proyectos',
