@@ -1,6 +1,9 @@
 <template>
-  <div class="projects">
-    <h1>Aquí van las cards con los proyectos creados</h1>
+  <div class="projects container">
+    <h2 class="text-center my-5">Aún no tienes proyectos</h2>
+    <div class="text-center">
+      <img src="../assets/camilleclaudel.jpg" alt="claudel">      
+    </div>
   </div>
 </template>
 
@@ -18,5 +21,8 @@ export default {
 }
 h2 {
   margin-bottom: 5em;
+}
+img {
+  height: 500px;
 }
 </style>
