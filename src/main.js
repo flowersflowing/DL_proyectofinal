@@ -9,10 +9,13 @@ import ElementUi from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import firebase from 'firebase';
 import { firebaseConfig } from './config/firebaseConfig';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(ElementUi);
+Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 firebase.initializeApp(firebaseConfig);

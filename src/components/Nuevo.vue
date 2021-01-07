@@ -10,7 +10,7 @@
               <b-form-input id="input-2" v-model="project.place" placeholder="Junta de vecinos Plaza Ratón." required></b-form-input>
           </b-form-group>
           <b-form-group id="input-group-3" label="Breve descripción del proyecto" label-for="input-3">
-            <b-form-textarea id="textarea" v-model="project.description" placeholder="En 100 caracteres escribe en qué consiste y para quien." rows="3" max-rows="6"></b-form-textarea>
+            <b-form-textarea id="textarea" v-model="project.description" placeholder="En 100 caracteres escribe en qué consiste y para quién." rows="3" max-rows="6"></b-form-textarea>
           </b-form-group>
           <b-form-file class="mb-3" v-model="file1" :state="Boolean(file1)" placeholder="Choose a file or drop it here..." drop-placeholder="Drop file here..."></b-form-file>
           <!-- <div class="mt-3">Selected file: {{ file1 ? file1.name : '' }}</div> -->

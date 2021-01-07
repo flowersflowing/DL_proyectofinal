@@ -2,7 +2,7 @@
   <div class="portada">
     <div class="container my-5 title">
       <h1 class="text-center">ELABORA</h1>
-      <h5 class="text-center mt-3">Plataforma libre para la elaboración de proyectos de arte y cultura.</h5>
+      <h5 class="text-center mt-3">Plataforma libre para la elaboración de proyectos de arte y cultura o con fines pedagógicos.</h5>
     </div>
   </div>
 </template>

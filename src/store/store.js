@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    projects: []
+    projects: [],
+    usuario: []
   },
   getters: {
     mostrarPoryectos(state) {
@@ -21,6 +22,13 @@ export default new Vuex.Store({
         name: data.name,
         place: data.place,
         description: data.description
+      }).then(resp => {
+        console.log(resp);
+      })
+    },
+    crearUsuario(context, data) {
+      db.collection('usuario').add({
+        name: data.name
       }).then(resp => {
         console.log(resp);
       })

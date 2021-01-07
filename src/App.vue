@@ -8,9 +8,9 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item><router-link to="/">Portada</router-link></b-nav-item>
-            <b-nav-item><router-link to="/proyectos">Mis proyectos</router-link></b-nav-item>
-            <b-nav-item><router-link to="/nuevoproyecto">Nuevo proyecto</router-link></b-nav-item>
+            <b-nav-item class="links"><router-link to="/">Portada</router-link></b-nav-item>
+            <b-nav-item class="links"><router-link to="/proyectos">Mis proyectos</router-link></b-nav-item>
+            <b-nav-item class="links"><router-link to="/nuevoproyecto">Nuevo proyecto</router-link></b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -57,5 +57,13 @@ html, body {
   height: 100%;
   // background-color: #fcf3df !important;
   background-color: #f4fdf7 !important;
+}
+.router-link {
+  text-decoration: none;
+  color: #eaf5f8;
+}
+.router-link-exact-active{
+  color: #e2c105;
+  font-weight: medium;
 }
 </style>
