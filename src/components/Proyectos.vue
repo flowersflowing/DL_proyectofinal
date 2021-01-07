@@ -11,9 +11,9 @@
             <b-col cols="6" sm="6" md="4" lg="4" xl="4" v-for="(proj, index) in proj" :key="index">
               <b-card>
                 <img :src="proj.imagen" alt="Imagen" img-top>
-                <b-card-text>{{proj.name}}</b-card-text>
-                <b-card-text>{{proj.place}}</b-card-text>
-                <b-card-text>{{proj.description}}</b-card-text>
+                <b-card-text>{{project.name}}</b-card-text>
+                <b-card-text>{{project.place}}</b-card-text>
+                <b-card-text>{{project.description}}</b-card-text>
               </b-card>
             </b-col>           
           </b-row>

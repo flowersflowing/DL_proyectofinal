@@ -2,15 +2,15 @@
   <div class="newproject container my-5">
     <section class="formulario p-5">
         <h4 class="mb-4">Comienza un nuevo proyecto</h4>
-        <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form @submit.prevent="crear" @reset="onReset" v-if="show">
         <b-form-group id="input-group-1" label="Nombre del proyecto" label-for="input-1">
-            <b-form-input id="input-1" v-model="proj.name" placeholder="Fotografía y ciudad." required></b-form-input>
+            <b-form-input id="input-1" v-model="project.name" placeholder="Fotografía y ciudad." required></b-form-input>
         </b-form-group>
         <b-form-group id="input-group-2" label="Institución o territorio" label-for="input-2">
-            <b-form-input id="input-2" v-model="proj.place" placeholder="Junta de vecinos Plaza Ratón." required></b-form-input>
+            <b-form-input id="input-2" v-model="project.place" placeholder="Junta de vecinos Plaza Ratón." required></b-form-input>
         </b-form-group>
         <b-form-group id="input-group-3" label="Breve descripción del proyecto" label-for="input-3">
-          <b-form-textarea id="textarea" v-model="proj.description" placeholder="En 100 caracteres escribe en qué consiste y para quien." rows="3" max-rows="6"></b-form-textarea>
+          <b-form-textarea id="textarea" v-model="project.description" placeholder="En 100 caracteres escribe en qué consiste y para quien." rows="3" max-rows="6"></b-form-textarea>
         </b-form-group>
 
         <b-button type="submit" variant="warning">Crear</b-button>
@@ -25,7 +25,7 @@ export default {
   name: 'Nuevo',
     data() {
         return {
-        proj: {
+        project: {
             name: '',
             place: '',
             description: ''
@@ -34,21 +34,25 @@ export default {
         }
     },
     methods: {
-        onSubmit(event) {
-            event.preventDefault()
-            alert(JSON.stringify(this.form))
+        crear() {
+          if(this.project.name && this.project.place && this.project.description.length < 101) {
+            this.$store.dispatch('agregarProyecto', this.project)
+          } else {
+            console.log('error');
+          }
         },
         onReset(event) {
             event.preventDefault()
             // Reset our form values
-            this.form.name = ''
+            this.project.name = ''
+            this.project.place = ''
+            this.project.description = ''           
             // Trick to reset/clear native browser form validation state
             this.show = false
             this.$nextTick(() => {
                 this.show = true
             })
         },
-        // Agregar función para enviar los datos a firebase 
     }
 }
 </script>
