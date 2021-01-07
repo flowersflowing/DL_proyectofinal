@@ -12,9 +12,15 @@ export default new Vuex.Store({
   getters: {
     mostrarProyectos(state) {
       return state.projects;
-    }
+    },
+    mostrarUsuario(state) {
+      return state.usuario;
+    }  
   },
   mutations: {
+    mutarProyectos(state, arreglo) {
+      state.projects = arreglo;
+    }
   },
   actions: {
     agregarProyecto(context, data) {
