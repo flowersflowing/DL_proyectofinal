@@ -26,6 +26,7 @@
                 <em>User</em>
               </template>
               <b-dropdown-item><router-link to="/login">Login</router-link></b-dropdown-item>
+              <b-dropdown-item @click="logout">Logout</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -34,6 +35,22 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import firebase from 'firebase';
+export default {
+  name: 'App',
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('/login');
+      }).catch((error) => {
+        console.error(error);
+      });
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 html, body {
