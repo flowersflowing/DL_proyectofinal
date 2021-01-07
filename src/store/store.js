@@ -10,7 +10,7 @@ export default new Vuex.Store({
     usuario: []
   },
   getters: {
-    mostrarPoryectos(state) {
+    mostrarProyectos(state) {
       return state.projects;
     }
   },
@@ -32,6 +32,21 @@ export default new Vuex.Store({
       }).then(resp => {
         console.log(resp);
       })
+    },
+    traerProyecto({commit}) {
+      db.collection('projects').onSnapshot(resp => {
+        let arreglo = [];
+        resp.forEach(el => {
+          arreglo.push({
+            id: el.id,
+            name: el.data().name,
+            place: el.data().place,
+            description: el.data().description,
+            file1: el.data().file1
+          })
+        });
+        commit('mutarProyectos', arreglo);
+      });
     }
   }
 })

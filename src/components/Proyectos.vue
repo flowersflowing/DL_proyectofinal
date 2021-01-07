@@ -1,6 +1,6 @@
 <template>
   <div class="projects container">
-    <!-- Agregar un v-if o v-show acá para que se deje de mostrar cuando hayan cards que mostrar -->
+    <!-- Agregar un v-if o v-show acá para que se deje de mostrar el formulario cuando muestre el avatar y que deje de mostrar a claudel cuando hayan cards que mostrar -->
     <section class="perfil container my-5">
       <div class="container p-4">
         <h4 class="mb-4">Perfil</h4>
@@ -8,7 +8,14 @@
           <b-form-group id="input-group-1" label="Elige nombre de usuario" label-for="input-1">
               <b-form-input id="input-1" v-model="user.name" placeholder="Frida Kahlo" required></b-form-input>
           </b-form-group>
-          <b-form-select class="mb-4" v-model="selected" :options="options"></b-form-select>
+
+          <b-form-select v-model="selected" @change="buscarIdObjeto">
+            <option disabled value="">Selecciona un elemento</option>
+            <option>Maya</option>
+            <option>Egyptian</option>
+            <option>Aztec</option>
+          </b-form-select>
+          <p>Seleccionado: {{ selected }}</p>
 
           <b-button type="submit" variant="warning">Crear</b-button>
           <b-button class="mx-2" type="reset" variant="secondary">Borrar</b-button>
@@ -45,14 +52,28 @@ export default {
     return {
       user: {
         name: '',
-        options: []
+        img: ''
       },
+      selected: '',
       show: true
     }
   },
   methods: {
+      buscarIdObjeto(value) {
+        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${value}&showOnly=openaccess`)
+          .then(response => response.json())
+          .then(data => this.getRandomObject(data));
+      },
+      getRandomObject(obj) {
+        // agregar randomizer
+        console.log(obj);
+        this.getProfilePicture(obj);
+      },
+      getProfilePicture(randomObj) {
+        console.log(randomObj.primaryImage);
+      },
       crearUser() {
-        if(this.user.name) {
+        if(this.user.name && this.user.img) {
           this.$store.dispatch('crearUsuario', this.user)
         } else {
           console.log('error');
