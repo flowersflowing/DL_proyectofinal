@@ -13,8 +13,8 @@
           <b-form-textarea id="textarea" v-model="proj.description" placeholder="En 100 caracteres escribe en qué consiste y para quien." rows="3" max-rows="6"></b-form-textarea>
         </b-form-group>
 
-        <b-button type="submit" variant="warning">Submit</b-button>
-        <b-button class="mx-2" type="reset" variant="secondary">Reset</b-button>
+        <b-button type="submit" variant="warning">Crear</b-button>
+        <b-button class="mx-2" type="reset" variant="secondary">Borrar</b-button>
         </b-form>        
     </section>
   </div>

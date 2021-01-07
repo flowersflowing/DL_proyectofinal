@@ -32,3 +32,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+#### Usuario y clave de correo para hacer login
+usuario: usuario@hola.es
+clave: 123456

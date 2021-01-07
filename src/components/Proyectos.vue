@@ -3,7 +3,7 @@
     <!-- Agregar un v-if o v-show acá para que se deje de mostrar cuando hayan cards que mostrar -->
     <div class="text-center">
       <h2 class="my-5">Aún no tienes proyectos</h2>
-      <img src="../assets/camilleclaudel.jpg" alt="claudel">      
+      <img id="claudel" src="../assets/camilleclaudel.jpg" alt="claudel">      
     </div>
     <b-container class="my-5">
         <b-card-group >
@@ -37,7 +37,8 @@ export default {
 h2 {
   margin-bottom: 5em;
 }
-img {
+#claudel {
   height: 370px;
+  border-radius: 50%;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="portada">
     <div class="container my-5 title">
-      <h2 class="text-center">Elabora</h2>
-      <h4 class="text-center">Plataforma libre para la elaboración de proyectos de arte y cultura.</h4>
+      <h1 class="text-center">ELABORA</h1>
+      <h5 class="text-center mt-3">Plataforma libre para la elaboración de proyectos de arte y cultura.</h5>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 <style scoped lang="scss">
 .title {
   background-color: #f3de24d5;
-  padding: 8em;
+  padding: 7em 0 9em 0;
 }
 h2 {
   margin-bottom: 4em;
