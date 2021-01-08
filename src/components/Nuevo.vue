@@ -4,15 +4,18 @@
         <h4 class="mb-4">Comienza un nuevo proyecto</h4>
         <b-form @submit.prevent="crear" @reset="onReset" v-if="show">
           <b-form-group id="input-group-1" label="Nombre del proyecto" label-for="input-1">
-              <b-form-input id="input-1" v-model="project.name" placeholder="Fotografía y ciudad." required></b-form-input>
+              <b-form-input id="input-1" v-model="project.title" placeholder="Fotografía y ciudad." required></b-form-input>
           </b-form-group>
           <b-form-group id="input-group-2" label="Institución o territorio" label-for="input-2">
               <b-form-input id="input-2" v-model="project.place" placeholder="Junta de vecinos Plaza Ratón." required></b-form-input>
           </b-form-group>
+          <b-form-group id="input-group-3" label="Link de imagen" label-for="input-3">
+              <b-form-input id="input-3" v-model="project.img" placeholder="Copia y pega el link de la imagen que quieras usar" required></b-form-input>
+          </b-form-group>
           <b-form-group id="input-group-3" label="Breve descripción del proyecto" label-for="input-3">
             <b-form-textarea id="textarea" v-model="project.description" placeholder="En 100 caracteres escribe en qué consiste y para quién." rows="3" max-rows="6"></b-form-textarea>
           </b-form-group>
-          <b-form-file class="mb-3" v-model="project.img" :state="Boolean(project.img)" placeholder="Choose a file or drop it here..." drop-placeholder="Drop file here..."></b-form-file>
+          <!-- <b-form-file class="mb-3" v-model="project.img" :state="Boolean(project.img)" placeholder="Choose a file or drop it here..." drop-placeholder="Drop file here..."></b-form-file> -->
           <!-- <div class="mt-3">Selected file: {{ file1 ? file1.name : '' }}</div> -->
 
           <b-button type="submit" variant="warning">Crear</b-button>
@@ -28,18 +31,19 @@ export default {
     data() {
         return {
         project: {
-            name: '',
+            title: '',
             place: '',
             description: '',
-            img: null
+            img: ''
+            // img: null
         },
         show: true
         }
     },
     methods: {
         crear() {
-          if(this.project.name && this.project.place && this.project.description.length < 101) {
-            this.$store.dispatch('agregarProyecto', this.project)
+          if(this.project.title && this.project.place && this.project.img && this.project.description.length < 101) {
+            this.$store.dispatch('agregarProyectos', this.project)
           } else {
             console.log('error');
           }
@@ -49,7 +53,8 @@ export default {
             // Reset our form values
             this.project.name = ''
             this.project.place = ''
-            this.project.description = ''           
+            this.project.img = ''
+            this.project.description = ''         
             // Trick to reset/clear native browser form validation state
             this.show = false
             this.$nextTick(() => {

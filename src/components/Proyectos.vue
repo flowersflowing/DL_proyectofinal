@@ -6,7 +6,7 @@
     <section class="perfil container my-5">
 
       <!-- Formulario para crear avatar -->      
-      <div class="container p-4" v-if="user.name === '' || user.img === ''">
+      <div class="container p-4">
         <h4 class="mb-4">Perfil</h4>
 
         <b-form @submit.prevent="crearUser" @reset="onReset" v-if="show">
@@ -25,18 +25,21 @@
           <b-button type="submit" variant="warning">Crear</b-button>
           <b-button class="mx-2" type="reset" variant="secondary">Borrar</b-button>
         </b-form>    
-      </div>
+      </div>   
+    </section>
 
       <!-- Avatar -->
-      <b-row v-else class="p-3">
-        <b-col cols="10" sm="8" md="4" lg="4" xl="3">
-          <div class="avatar p-2">
-            <p>{{ user.name }}</p>
-            <b-avatar :src="user.img" size="6rem"></b-avatar>          
-          </div>   
-        </b-col>
-      </b-row>       
-    </section>
+      <section>
+        <b-row>
+          <b-col cols="10" sm="8" md="4" lg="4" xl="3">
+            <div class="avatar p-2">
+              <p>{{ user.name }}</p>
+              <b-avatar :src="user.img" size="6rem"></b-avatar>          
+            </div>   
+          </b-col>
+        </b-row>
+      </section>
+
 
     <!-- Sección de cards con proyectos -->
     <section class="main-projects">
@@ -49,18 +52,25 @@
 
       <!-- Sí hay proyectos -->
       <b-container class="my-5">
-          <b-card-group >
+          <!-- <b-card-group> -->
             <b-row>
-              <b-col cols="6" sm="6" md="4" lg="4" xl="4" v-for="(proj, index) in proj" :key="index">
-                <b-card>
-                  <img :src="proj.img" alt="Imagen" img-top>
+              <b-col :data="dataProyectos" cols="6" sm="6" md="4" lg="4" xl="4" v-for="(item, index) in project" :key="index">
+                <!-- <b-card>
+                  <img :src="project.img" alt="Imagen" img-top>
                   <b-card-text>{{project.name}}</b-card-text>
                   <b-card-text>{{project.place}}</b-card-text>
                   <b-card-text>{{project.description}}</b-card-text>
+                </b-card> -->
+                <b-card :title="project.title" :src="project.img" img-alt="Image" img-top tag="article" class="mb-2">
+                  <b-card-text>
+                    {{project.description}}
+                  </b-card-text>
+                  <b-button href="#" variant="primary">Editar</b-button>
+                  <b-button href="#" variant="primary">Eliminar</b-button>
                 </b-card>
               </b-col>           
             </b-row>
-          </b-card-group>
+          <!-- </b-card-group> -->
       </b-container>        
     </section>
   </div>
@@ -77,6 +87,11 @@ export default {
       },
       selected: '',
       show: true
+    }
+  },
+  computed: {
+    dataProyectos() {
+      return this.$store.getters.mostrarProyectos;
     }
   },
   methods: {
@@ -120,6 +135,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+// @import '../node_modules/bootstrap/scss/bootstrap.scss';
 .title {
   background-color: #f3de24d5;
   padding: 8em;

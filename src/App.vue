@@ -40,6 +40,10 @@
 import firebase from 'firebase';
 export default {
   name: 'App',
+  mounted() {
+    this.$store.dispatch('traerDataProyectos'),
+    this.$store.dispatch('traerDatausuario')
+  },
   methods: {
     logout() {
       firebase.auth().signOut().then(() => {
@@ -59,7 +63,7 @@ html, body {
   background-color: #f4fdf7 !important;
 }
 .router-link {
-  text-decoration: none;
+  text-decoration-color: none;
   color: #eaf5f8;
 }
 .router-link-exact-active{

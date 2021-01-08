@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { db } from '../main';
 
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,6 +12,8 @@ export default new Vuex.Store({
   },
   getters: {
     mostrarProyectos(state) {
+      console.log('mostrar proyectos');
+      console.log('state : ' + JSON.stringify(state));
       return state.projects;
     },
     mostrarUsuario(state) {
@@ -18,15 +21,47 @@ export default new Vuex.Store({
     }  
   },
   mutations: {
-    mutarProyectos(state, arreglo) {
+    cambiarProyectos(state, arreglo) {
+      console.log('cambiar proyectos');
+      console.log('arreglo ' + arreglo);
       state.projects = arreglo;
+    },
+    cambiarUsuario(state, arreglo) {
+      state.usuario = arreglo;
     }
   },
   actions: {
-    agregarProyecto(context, data) {
+    traerDataProyectos({commit}) {
+      console.log('afuera de traer Proyecto');
+      db.collection('projects').get().then(resp => {
+        let arreglo = [];
+        console.log('traer proyectos');
+        resp.forEach(el => {
+          arreglo.push({
+            // id: el.id,
+            title: el.data().title,
+            place: el.data().place,
+            img: el.data().img,
+            description: el.data().description
+          });
+        });
+        commit('cambiarProyectos', arreglo);
+      });
+    },
+    traerDataUsuario({commit}) {
+      db.collection('usuario').onSnapshot(resp => {
+        let arreglo = [];
+          arreglo.push({
+          name: resp.data().name,
+        });
+        commit('cambiarUsuario', arreglo);
+      });
+    },
+    agregarProyectos(context, data) {
       db.collection('projects').add({
-        name: data.name,
+        title: data.title,
         place: data.place,
+        img: data.img,
         description: data.description
       }).then(resp => {
         console.log(resp);
@@ -38,32 +73,6 @@ export default new Vuex.Store({
       }).then(resp => {
         console.log(resp);
       })
-    },
-    traerProyecto({commit}) {
-      db.collection('projects').onSnapshot(resp => {
-        let arreglo = [];
-        resp.forEach(el => {
-          arreglo.push({
-            id: el.id,
-            name: el.data().name,
-            place: el.data().place,
-            description: el.data().description,
-            file1: el.data().img
-          })
-        });
-        commit('mutarProyectos', arreglo);
-      });
-    },
-    traerUsuario({commit}) {
-      db.collection('usuario').onSnapshot(resp => {
-        let arreglo = [];
-        resp(el => {
-          arreglo.push({
-            name: el.data().name,
-          })
-        });
-        commit('mutarProyectos', arreglo);
-      });
     }
   }
 })
