@@ -34,7 +34,8 @@ export default {
             title: '',
             place: '',
             description: '',
-            img: ''
+            img: '',
+            id: ''
             // img: null
         },
         show: true

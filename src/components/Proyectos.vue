@@ -64,8 +64,8 @@
                   <b-card-text>
                     {{project.description}}
                   </b-card-text>
-                  <b-button href="#" variant="primary">Editar</b-button>
-                  <b-button href="#" variant="primary">Eliminar</b-button>
+                  <b-button href="#" variant="warning">Editar</b-button>
+                  <b-button class="ml-2" variant="secondary" @click="handleDelete(project.id)">Eliminar</b-button>
                 </b-card>
               </b-col>           
             </b-row>
@@ -128,6 +128,9 @@ export default {
               this.show = true
           })
       },
+      handleDelete(id) {
+          this.$store.dispatch('eliminarProyecto', id);
+      }
   }
 }
 </script>

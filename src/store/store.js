@@ -32,7 +32,7 @@ export default new Vuex.Store({
         let arreglo = [];
         resp.forEach(el => {
           arreglo.push({
-            // id: el.id,
+            id: el.id,
             title: el.data().title,
             place: el.data().place,
             img: el.data().img,
@@ -68,6 +68,13 @@ export default new Vuex.Store({
         name: data.name
       }).then(resp => {
         console.log(resp);
+      })
+    },
+    eliminarProyecto(context, id) {
+      db.collection('projects').doc(id).delete().then(() => {
+        console.log('eliminado');
+      }).catch (error => {
+        console.log(error);
       })
     }
   }
