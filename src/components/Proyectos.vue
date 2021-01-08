@@ -54,12 +54,6 @@
           <!-- <b-card-group> -->
             <b-row>
               <b-col cols="6" sm="6" md="4" lg="4" xl="4" v-for="(project, index) in dataProyectos" :key="index">
-                <!-- <b-card>
-                  <img :src="project.img" alt="Imagen" img-top>
-                  <b-card-text>{{project.name}}</b-card-text>
-                  <b-card-text>{{project.place}}</b-card-text>
-                  <b-card-text>{{project.description}}</b-card-text>
-                </b-card> -->
                 <b-card :title="project.title" :img-src="project.img" img-alt="Image" img-top tag="article" class="mb-2">
                   <b-card-text>
                     {{project.description}}
@@ -129,7 +123,8 @@ export default {
           })
       },
       handleDelete(id) {
-          this.$store.dispatch('eliminarProyecto', id);
+        this.$store.dispatch('eliminarProyecto', id);
+        this.$router.push('/proyectos');
       }
   }
 }

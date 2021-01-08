@@ -75,7 +75,7 @@ export default new Vuex.Store({
         console.log('eliminado');
       }).catch (error => {
         console.log(error);
-      })
+      });
     }
   }
 })
