@@ -12,8 +12,6 @@ export default new Vuex.Store({
   },
   getters: {
     mostrarProyectos(state) {
-      console.log('mostrar proyectos');
-      console.log('state : ' + JSON.stringify(state));
       return state.projects;
     },
     mostrarUsuario(state) {
@@ -22,8 +20,6 @@ export default new Vuex.Store({
   },
   mutations: {
     cambiarProyectos(state, arreglo) {
-      console.log('cambiar proyectos');
-      console.log('arreglo ' + arreglo);
       state.projects = arreglo;
     },
     cambiarUsuario(state, arreglo) {
@@ -32,10 +28,8 @@ export default new Vuex.Store({
   },
   actions: {
     traerDataProyectos({commit}) {
-      console.log('afuera de traer Proyecto');
       db.collection('projects').get().then(resp => {
         let arreglo = [];
-        console.log('traer proyectos');
         resp.forEach(el => {
           arreglo.push({
             // id: el.id,
@@ -51,8 +45,10 @@ export default new Vuex.Store({
     traerDataUsuario({commit}) {
       db.collection('usuario').onSnapshot(resp => {
         let arreglo = [];
+        resp.forEach(el => {
           arreglo.push({
-          name: resp.data().name,
+            name: el.data().name,
+          });
         });
         commit('cambiarUsuario', arreglo);
       });

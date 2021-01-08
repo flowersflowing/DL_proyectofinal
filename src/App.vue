@@ -42,7 +42,7 @@ export default {
   name: 'App',
   mounted() {
     this.$store.dispatch('traerDataProyectos'),
-    this.$store.dispatch('traerDatausuario')
+    this.$store.dispatch('traerDataUsuario')
   },
   methods: {
     logout() {

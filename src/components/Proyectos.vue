@@ -49,19 +49,18 @@
         <h2 class="my-5">Aún no tienes proyectos</h2>
         <img id="claudel" src="../assets/camilleclaudel.jpg" alt="claudel">      
       </div>
-
       <!-- Sí hay proyectos -->
       <b-container class="my-5">
           <!-- <b-card-group> -->
             <b-row>
-              <b-col :data="dataProyectos" cols="6" sm="6" md="4" lg="4" xl="4" v-for="(item, index) in project" :key="index">
+              <b-col cols="6" sm="6" md="4" lg="4" xl="4" v-for="(project, index) in dataProyectos" :key="index">
                 <!-- <b-card>
                   <img :src="project.img" alt="Imagen" img-top>
                   <b-card-text>{{project.name}}</b-card-text>
                   <b-card-text>{{project.place}}</b-card-text>
                   <b-card-text>{{project.description}}</b-card-text>
                 </b-card> -->
-                <b-card :title="project.title" :src="project.img" img-alt="Image" img-top tag="article" class="mb-2">
+                <b-card :title="project.title" :img-src="project.img" img-alt="Image" img-top tag="article" class="mb-2">
                   <b-card-text>
                     {{project.description}}
                   </b-card-text>
@@ -95,6 +94,13 @@ export default {
     }
   },
   methods: {
+      crearUser() {
+        if(this.user.name && this.user.img) {
+          this.$store.dispatch('crearUsuario', this.user)
+        } else {
+          console.log('error');
+        }
+      },
       buscarIdObjeto(value) {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${value}&showOnly=openaccess`)
           .then(response => response.json())
@@ -110,13 +116,6 @@ export default {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomObj}`)
           .then(response => response.json())
           .then(data => this.user.img = data.primaryImage);
-      },
-      crearUser() {
-        if(this.user.name && this.user.img) {
-          this.$store.dispatch('crearUsuario', this.user)
-        } else {
-          console.log('error');
-        }
       },
       onReset(event) {
           event.preventDefault()
