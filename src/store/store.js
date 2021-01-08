@@ -28,7 +28,7 @@ export default new Vuex.Store({
   },
   actions: {
     traerDataProyectos({commit}) {
-      db.collection('projects').get().then(resp => {
+      db.collection('projects').onSnapshot(resp => {
         let arreglo = [];
         resp.forEach(el => {
           arreglo.push({
