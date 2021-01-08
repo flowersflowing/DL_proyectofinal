@@ -48,7 +48,18 @@ export default new Vuex.Store({
             name: el.data().name,
             place: el.data().place,
             description: el.data().description,
-            file1: el.data().file1
+            file1: el.data().img
+          })
+        });
+        commit('mutarProyectos', arreglo);
+      });
+    },
+    traerUsuario({commit}) {
+      db.collection('usuario').onSnapshot(resp => {
+        let arreglo = [];
+        resp(el => {
+          arreglo.push({
+            name: el.data().name,
           })
         });
         commit('mutarProyectos', arreglo);
