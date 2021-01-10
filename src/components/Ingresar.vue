@@ -2,12 +2,12 @@
   <div class="entrar container my-5">
     <section class="ingresar container p-5">
       <b-form @submit.prevent="login" @reset="onReset" v-if="show">
-        <b-form-group id="input-group-1" label="Correo electrónico de google" label-for="input-1" description="We'll never share your email with anyone else.">
-          <b-form-input id="input-1" v-model="form.email" type="email" placeholder="usuario@gmail.com" required></b-form-input>
+        <b-form-group id="input-group-1" label="Correo electrónico" label-for="input-1" description="We'll never share your email with anyone else.">
+          <b-form-input id="input-1" v-model="usuario.email" type="email" placeholder="usuario@gmail.com" required></b-form-input>
         </b-form-group>
 
         <b-form-group id="input-group-2" label="Clave" label-for="input-2">
-          <b-form-input id="input-2" v-model="form.password" type="password" placeholder="Ingresa tu nombre" required></b-form-input>
+          <b-form-input id="input-2" v-model="usuario.password" type="password" placeholder="Ingresa tu clave" required></b-form-input>
         </b-form-group>
         <div class="my-4">
           <b-button type="submit" variant="warning">Ingresar</b-button>
@@ -29,7 +29,7 @@ export default {
   name: 'Ingresar',
   data() {
     return {
-      form: {
+      usuario: {
         email: '',
         password: ''
       },
@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     login() {
-      if(this.form.email && this.form.password) {
-        firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
+      if(this.usuario.email && this.usuario.password) {
+        firebase.auth().signInWithEmailAndPassword(this.usuario.email, this.usuario.password)
         .then(resp => {
           console.log(resp.user.email);
           this.$router.push('/proyectos');

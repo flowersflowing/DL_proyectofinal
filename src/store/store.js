@@ -65,7 +65,10 @@ export default new Vuex.Store({
     },
     crearUsuario(context, data) {
       db.collection('usuario').add({
-        name: data.name
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        img: data.img
       }).then(resp => {
         console.log(resp);
       })
