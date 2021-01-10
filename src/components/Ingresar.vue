@@ -3,11 +3,11 @@
     <section class="ingresar container p-5">
       <b-form @submit.prevent="login" @reset="onReset" v-if="show">
         <b-form-group id="input-group-1" label="Correo electrónico" label-for="input-1" description="We'll never share your email with anyone else.">
-          <b-form-input id="input-1" v-model="usuario.email" type="email" placeholder="usuario@gmail.com" required></b-form-input>
+          <b-form-input id="input-1" v-model="form.email" type="email" placeholder="usuario@gmail.com" required></b-form-input>
         </b-form-group>
 
         <b-form-group id="input-group-2" label="Clave" label-for="input-2">
-          <b-form-input id="input-2" v-model="usuario.password" type="password" placeholder="Ingresa tu clave" required></b-form-input>
+          <b-form-input id="input-2" v-model="form.password" type="password" placeholder="Ingresa tu clave" required></b-form-input>
         </b-form-group>
         <div class="my-4">
           <b-button type="submit" variant="warning">Ingresar</b-button>
@@ -29,7 +29,7 @@ export default {
   name: 'Ingresar',
   data() {
     return {
-      usuario: {
+      form: {
         email: '',
         password: ''
       },
@@ -38,25 +38,25 @@ export default {
   },
   methods: {
     login() {
-      if(this.usuario.email && this.usuario.password) {
-        firebase.auth().signInWithEmailAndPassword(this.usuario.email, this.usuario.password)
+      if(this.form.email && this.form.password) {
+        firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(resp => {
-          console.log(resp.user.email);
+          console.log(resp.form.email);
           this.$router.push('/proyectos');
-        }).catch(error => {
+        }).catch (error => {
           if(error.code == 'auth/wrong-password') {
             console.log('contraseña inválida');
-          }else if(error.code == 'auth/invalid-email') {
+          } else if(error.code == 'auth/invalid-email') {
             console.log('correo inválido');
-          }else if(error.code == 'auth/user-disabled') {
+          } else if(error.code == 'auth/user-disabled') {
             console.log('usuario no corresponde');
-          }else {
+          } else {
             Error(error);
             console.log('usuario no encontrado');
             // this.$router.push('/');
           }
-        })
-      }else {
+        });
+      } else {
         console.log('error por situación imprevista en login por correo');
       }
     },

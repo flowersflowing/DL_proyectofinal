@@ -8,23 +8,23 @@
                 <h4 class="mb-4">Perfil</h4>
 
                 <b-form @submit.prevent="crearUser" @reset="onReset" v-if="show">
-                <b-form-group id="input-group-1" label="Elige nombre de usuario" label-for="input-1">
+                <!-- <b-form-group id="input-group-1" label="Elige nombre de usuario" label-for="input-1">
                     <b-form-input id="input-1" v-model="user.name" placeholder="Frida Kahlo" required></b-form-input>
-                </b-form-group>
+                </b-form-group> -->
                 <b-form-group id="input-group-1" label="Ingresa tu correo electrónico" label-for="input-1" description="We'll never share your email with anyone else.">
                     <b-form-input id="input-1" v-model="user.email" type="email" placeholder="usuario@gmail.com" required></b-form-input>
                 </b-form-group>
                 <b-form-group id="input-group-2" label="Ingresa una clave" label-for="input-2">
                     <b-form-input id="input-2" v-model="user.password" type="password" placeholder="Ingresa tu nombre" required></b-form-input>
                 </b-form-group>
-
+<!-- 
                 <b-form-select class="mt-2" v-model="selected" @change="buscarIdObjeto">
                     <option disabled value="">Selecciona un elemento para personalizar tu portada</option>
                     <option>Aztec</option>
                     <option>Egyptian</option>
                     <option>Mayan</option>
                 </b-form-select>
-                <p>Seleccionado: {{ selected }}</p>
+                <p>Seleccionado: {{ selected }}</p> -->
 
                 <b-button type="submit" variant="warning">Crear</b-button>
                 <b-button class="mx-2" type="reset" variant="secondary">Borrar</b-button>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 export default {
   name: 'Proyectos',
   data() {
@@ -52,8 +53,8 @@ export default {
       user: {
         name: '',
         email: '',
-        password: '',
-        img: ''
+        // password: '',
+        // img: ''
       },
       selected: '',
       show: true
@@ -61,11 +62,30 @@ export default {
   },
   methods: {
       crearUser() {
-        if(this.user.name && this.user.email && this.user.password && this.user.img) {
-          this.$store.dispatch('crearUsuario', this.user)
-        } else {
-          console.log('error');
-        }
+          if(this.user.email && this.user.password) {
+              firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
+              .then((resp) => {
+                  this.user.userId = resp.user.uid;
+                  this.$store.dispatch('crearUsuario', this.user);
+                  this.$router.push('/login');
+              }).catch((error) => {
+                  if(error.code == 'auth/email-already-in-use') {
+                      this.errors(error);
+                  } else if(error.code == 'auth/invalid-email') {
+                      this.errors(error)
+                  } else if (error.code == 'auth/weak-password') {
+                      this.errors(error);
+                  }
+              });
+          } else {
+              console.log('No funciona');
+          }
+      },
+      errors(error) {
+          this.$notify.error({
+              title: 'Error',
+              message: `${error.message}`
+          });
       },
       buscarIdObjeto(value) {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${value}&showOnly=openaccess`)
