@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { db } from '../main';
+import router from '../router/router';
 
 
 Vue.use(Vuex)
@@ -84,15 +85,19 @@ export default new Vuex.Store({
       });
     },
     // Action de editar colección
-    editandoProyecto(commit, data) {
-      db.collection('projects').doc(data.id).set({
+    editandoProyecto(context, data) {
+      db.collection('projects').doc(data.id).update({
         title: data.title,
         place: data.place,
         img: data.img,
         description: data.description,
         id: data.id
-      });
-      commit('updateProject', data.id);
+      }).then(() => {
+        console.log('entrando');
+        setTimeout(() => {
+          router.replace('/proyectos');
+        }, 1300);
+      })
     }
   }
 })

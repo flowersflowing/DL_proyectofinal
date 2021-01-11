@@ -44,8 +44,19 @@ export default {
     },
     methods: {
         editProject() {
-            this.$store.dispatch('editandoProyecto', this.project);
-            console.log('Editando');
+            if(this.project.title && this.project.place && this.project.description && this.project.img) {
+                console.log('llena formulario');
+                let data = {
+                    title: this.project.title,
+                    place: this.project.place,
+                    description: this.project.description,
+                    img: this.project.img,
+                };
+                this.$store.dispatch('editandoProyecto', data);
+                console.log('Editando');                
+            } else {
+                console.log('No entra');
+            }
         },
         onReset(event) {
             event.preventDefault()
