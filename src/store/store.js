@@ -19,11 +19,14 @@ export default new Vuex.Store({
     }  
   },
   mutations: {
-    cambiarProyectos(state, arreglo) {
+    createProject(state, arreglo) {
       state.projects = arreglo;
     },
-    cambiarUsuario(state, arreglo) {
+    createUser(state, arreglo) {
       state.usuario = arreglo;
+    },
+    updateProject(state, arreglo) {
+      state.actualProyecto = arreglo;
     }
   },
   actions: {
@@ -39,7 +42,7 @@ export default new Vuex.Store({
             description: el.data().description
           });
         });
-        commit('cambiarProyectos', arreglo);
+        commit('createProject', arreglo);
       });
     },
     traerDataUsuario({commit}) {
@@ -50,7 +53,7 @@ export default new Vuex.Store({
             name: el.data().name,
           });
         });
-        commit('cambiarUsuario', arreglo);
+        commit('createUser', arreglo);
       });
     },
     agregarProyectos(context, data) {
@@ -81,10 +84,15 @@ export default new Vuex.Store({
       });
     },
     // Action de editar colección
-    editandoProyecto(context, data) {
+    editandoProyecto(commit, data) {
       db.collection('projects').doc(data.id).set({
-
-      })
-    }
+        title: data.title,
+        place: data.place,
+        img: data.img,
+        description: data.description,
+        id: data.id
+      });
+      commit('updateProject');
+    },
   }
 })
