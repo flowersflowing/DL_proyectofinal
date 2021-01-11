@@ -52,6 +52,7 @@ export default {
                     description: this.project.description,
                     img: this.project.img,
                 };
+                console.log(data);
                 this.$store.dispatch('editandoProyecto', data);
                 console.log('Editando');                
             } else {
