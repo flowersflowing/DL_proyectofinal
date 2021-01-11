@@ -65,12 +65,12 @@ export default new Vuex.Store({
     },
     crearUsuario(context, data) {
       db.collection('usuario').add({
-        name: data.name,
-        email: data.email,
-        // password: data.password,
+        // name: data.name,
         // img: data.img
       }).then(resp => {
         console.log(resp);
+        console.log(data);
+        console.log(context);
       })
     },
     eliminarProyecto(context, id) {

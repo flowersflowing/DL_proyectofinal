@@ -39,11 +39,15 @@ export default {
   methods: {
     login() {
       if(this.form.email && this.form.password) {
+
         firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(resp => {
-          console.log(resp.form.email);
+          console.log(resp);
+          console.log(resp.message);
+          // console.log(resp.form.email);
           this.$router.push('/proyectos');
         }).catch (error => {
+          console.log(error);
           if(error.code == 'auth/wrong-password') {
             console.log('contraseña inválida');
           } else if(error.code == 'auth/invalid-email') {
@@ -55,7 +59,7 @@ export default {
             console.log('usuario no encontrado');
             // this.$router.push('/');
           }
-        });
+        })
       } else {
         console.log('error por situación imprevista en login por correo');
       }
