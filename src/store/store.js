@@ -26,7 +26,7 @@ export default new Vuex.Store({
       state.usuario = arreglo;
     },
     updateProject(state, arreglo) {
-      state.actualProyecto = arreglo;
+      state.projects = arreglo;
     }
   },
   actions: {
@@ -92,7 +92,7 @@ export default new Vuex.Store({
         description: data.description,
         id: data.id
       });
-      commit('updateProject');
-    },
+      commit('updateProject', data.id);
+    }
   }
 })
