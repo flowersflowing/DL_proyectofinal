@@ -79,6 +79,12 @@ export default new Vuex.Store({
       }).catch (error => {
         console.log(error);
       });
+    },
+    // Action de editar colección
+    editandoProyecto(context, data) {
+      db.collection('projects').doc(data.id).set({
+
+      })
     }
   }
 })
