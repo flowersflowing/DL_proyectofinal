@@ -19,7 +19,7 @@
                   <b-card-text>
                     {{project.description}}
                   </b-card-text>
-                  <b-button href="#" variant="warning">Editar</b-button>
+                  <b-button href="#" variant="warning" @click="edit()">Editar</b-button>
                   <b-button class="ml-2" variant="secondary" @click="handleDelete(project.id)">Eliminar</b-button>
                 </b-card>
               </b-col>           
@@ -42,6 +42,9 @@ export default {
       handleDelete(id) {
         this.$store.dispatch('eliminarProyecto', id);
         this.$router.push('/proyectos');
+      },
+      edit() {
+        this.$router.push('/editarproyecto');
       }
   }
 }

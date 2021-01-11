@@ -11,7 +11,6 @@
             <b-nav-item class="links"><router-link to="/">Portada</router-link></b-nav-item>
             <b-nav-item class="links"><router-link to="/proyectos">Mis proyectos</router-link></b-nav-item>
             <b-nav-item class="links"><router-link to="/nuevoproyecto">Nuevo proyecto</router-link></b-nav-item>
-            <b-nav-item class="links"><router-link to="/editarproyecto">Editar proyecto</router-link></b-nav-item>
             <b-nav-item class="links"><router-link to="/registro">Regístrate</router-link></b-nav-item>
           </b-navbar-nav>
 

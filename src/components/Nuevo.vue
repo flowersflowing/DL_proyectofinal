@@ -44,7 +44,8 @@ export default {
     methods: {
         crear() {
           if(this.project.title && this.project.place && this.project.img && this.project.description.length < 101) {
-            this.$store.dispatch('agregarProyectos', this.project)
+            this.$store.dispatch('agregarProyectos', this.project);
+            this.$router.push('/proyectos');
           } else {
             console.log('error');
           }

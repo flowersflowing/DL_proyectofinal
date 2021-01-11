@@ -44,6 +44,8 @@ export default {
     },
     methods: {
         editProject() {
+            this.$store.dispatch('editandoProyecto', this.project);
+            console.log('Editando');
         },
         onReset(event) {
             event.preventDefault()
