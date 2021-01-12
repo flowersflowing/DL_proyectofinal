@@ -44,7 +44,7 @@ export default {
         this.$router.push('/proyectos');
       },
       handleEdit(project) {
-        this.$store.dispatch('editarProyecto',project)
+        this.$store.dispatch('editarProyecto', project)
         this.$router.push('/editarproyecto');
       }
   }

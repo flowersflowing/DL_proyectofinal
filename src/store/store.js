@@ -86,14 +86,13 @@ export default new Vuex.Store({
       });
     },
     // Action de editar colección
-    editarProyecto(context, project) {
-      db.collection('projects').doc(project.id).update({
-        title: project.title,
-        place: project.place,
-        img: project.img,
-        description: project.description
-      }).then(() => {
-      })
+    editarProyecto(context, data) {
+      db.collection('projects').doc(data.id).set({
+        title: data.title,
+        place: data.place,
+        img: data.img,
+        description: data.description
+      });
     }
   }
 })
