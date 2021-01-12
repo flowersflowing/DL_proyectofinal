@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { db } from '../main';
-import router from '../router/router';
+// import router from '../router/router';
 
 
 Vue.use(Vuex)
@@ -9,7 +9,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     projects: [],
-    usuario: []
+    usuario: [],
+    // project: {}
   },
   getters: {
     mostrarProyectos(state) {
@@ -26,8 +27,8 @@ export default new Vuex.Store({
     createUser(state, arreglo) {
       state.usuario = arreglo;
     },
-    updateProject(state, arreglo) {
-      state.projects = arreglo;
+    updateProject(state, project) {
+      state.projects = project;
     }
   },
   actions: {
@@ -85,18 +86,13 @@ export default new Vuex.Store({
       });
     },
     // Action de editar colección
-    editandoProyecto(context, data) {
-      db.collection('projects').doc(data.id).update({
-        title: data.title,
-        place: data.place,
-        img: data.img,
-        description: data.description,
-        id: data.id
+    editarProyecto(context, project) {
+      db.collection('projects').doc(project.id).update({
+        title: project.title,
+        place: project.place,
+        img: project.img,
+        description: project.description
       }).then(() => {
-        console.log('entrando');
-        setTimeout(() => {
-          router.replace('/proyectos');
-        }, 1300);
       })
     }
   }

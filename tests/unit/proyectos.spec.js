@@ -1,5 +1,5 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils';
-import App from '../../src/components/Proyectos';
+import Proyectos from '../../src/components/Proyectos';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import store from '../../src/store/store';
@@ -12,4 +12,10 @@ describe('Pruebas con el store', () => {
         store = new Vuex.Store(store)
     });
 });
+
+const localVue = createLocalVue();
+const router = new VueRouter(myRoutes);
+
+// Verificar la funcionalidad de eliminar proyecto
+// Veo que la prueba no me pide tests unitarios. Sólo E2E. Vuelvo a la función editar.
 

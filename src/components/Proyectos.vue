@@ -15,11 +15,11 @@
           <!-- <b-card-group> -->
             <b-row>
               <b-col cols="6" sm="6" md="4" lg="4" xl="4" v-for="(project, index) in dataProyectos" :key="index">
-                <b-card :title="project.title" :img-src="project.img" img-alt="Image" img-top tag="article" class="mb-2">
+                <b-card :title="project.title" :img-src="project.img" img-alt="Image"  img-top tag="article" class="mb-2">
                   <b-card-text>
                     {{project.description}}
                   </b-card-text>
-                  <b-button href="#" variant="warning" @click="edit()">Editar</b-button>
+                  <b-button href="#" variant="warning" @click="handleEdit(project)">Editar</b-button>
                   <b-button class="ml-2" variant="secondary" @click="handleDelete(project.id)">Eliminar</b-button>
                 </b-card>
               </b-col>           
@@ -43,7 +43,8 @@ export default {
         this.$store.dispatch('eliminarProyecto', id);
         this.$router.push('/proyectos');
       },
-      edit() {
+      handleEdit(project) {
+        this.$store.dispatch('editarProyecto',project)
         this.$router.push('/editarproyecto');
       }
   }
